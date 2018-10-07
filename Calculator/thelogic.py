@@ -1,0 +1,56 @@
+from tkinter import *
+
+cal = Tk()
+cal.title('MyCalculator')
+cal.resizable(0,0)
+
+display = Text(cal, width=50, height=3)
+display.grid(row=0, columnspan=4)
+
+
+def call(x):
+    display.insert(INSERT, x)
+def remove():
+    display.delete(0.0, END)
+def calculation():
+    content = display.get(0.0, END)
+    try:
+        result = eval(content)
+    except BaseException as e:
+        display.delete(0.0, END)
+        display.insert(END, 'ERROR')
+    display.insert(END, '\n')
+    display.insert(END, result)
+btn_1 = Button(cal, text='1', command=lambda: call(1))
+btn_1.grid(row=1, column=0, sticky=W+E+S+N)
+btn_2 = Button(cal, text='2', command=lambda: call(2))
+btn_2.grid(row=1, column=1, sticky=W+E+S+N)
+btn_3 = Button(cal, text='3', command=lambda: call(3))
+btn_3.grid(row=1, column=2, sticky=W+E+S+N)
+btn_add = Button(cal, text='+', command=lambda: call('+'))
+btn_add.grid(row=1, column=3, sticky=W+E+S+N)
+btn_4 = Button(cal, text='4', command=lambda: call(4))
+btn_4.grid(row=2, column=0, sticky=W+E+S+N)
+btn_5 = Button(cal, text='5', command=lambda: call(5))
+btn_5.grid(row=2, column=1, sticky=W+E+S+N)
+btn_6 = Button(cal, text='6', command=lambda: call(6))
+btn_6.grid(row=2, column=2, sticky=W+E+S+N)
+btn_sub = Button(cal, text='-', command=lambda: call('-'))
+btn_sub.grid(row=2, column=3, sticky=W+E+S+N)
+btn_7 = Button(cal, text='7', command=lambda: call(7))
+btn_7.grid(row=3, column=0, sticky=W+E+S+N)
+btn_8 = Button(cal, text='8', command=lambda: call(8))
+btn_8.grid(row=3, column=1, sticky=W+E+S+N)
+btn_9 = Button(cal, text='9', command=lambda: call(9))
+btn_9.grid(row=3, column=2, sticky=W+E+S+N)
+btn_mul = Button(cal, text='*', command=lambda: call('*'))
+btn_mul.grid(row=3, column=3, sticky=W+E+S+N)
+btn_clear = Button(cal, text='clear', command=lambda: remove())
+btn_clear.grid(row=4, column=0, sticky=W+E+S+N)
+btn_0 = Button(cal, text='0', command=lambda: call(0))
+btn_0.grid(row=4, column=1, sticky=W+E+S+N)
+btn_equal = Button(cal, text='=', command=lambda: calculation())
+btn_equal.grid(row=4, column=2, sticky=W+E+S+N)
+btn_div = Button(cal, text='/', command=lambda: call('/'))
+btn_div.grid(row=4, column=3, sticky=W+E+S+N)
+cal.mainloop()
